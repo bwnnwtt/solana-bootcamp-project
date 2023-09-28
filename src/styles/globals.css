@@ -96,6 +96,37 @@ a {
   text-decoration: none;
 }
 
+div {
+  margin-top: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* Style the custom radio button container */
+.radio-container {
+  display: inline-block;
+  position: relative;
+  margin-right: 20px; /* Adjust margin as needed */
+}
+
+/* Style the custom radio button */
+.radio-container input[type="radio"] + label {
+  position: relative;
+  padding: 10px 20px;
+  border: 2px solid silver;
+  border-radius: 20px; /* Adjust the border-radius to create a rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Style the radio button when it's checked */
+.radio-container input[type="radio"]:checked + label {
+  background-color: #512da8;
+  
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
