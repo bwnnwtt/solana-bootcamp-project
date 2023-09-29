@@ -1,8 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-const Canvas = ({text}) => {
-
-  console.log(`text: ${text}`)
+const Canvas = ({text, handleMint}) => {
 
   useEffect(() => {
     const canvas = document.getElementById("myCanvas") as HTMLCanvasElement
@@ -11,16 +9,24 @@ const Canvas = ({text}) => {
     ctx.textBaseline = "middle"
     ctx.fillStyle = 'white'
     ctx.clearRect(0, 0, 200, 200)
+    ctx.strokeStyle = 'white'
+    ctx.strokeRect(0, 0, 200, 200)
 
     ctx.font = "24px Arial"
-    let t = ctx.measureText(text)
-    console.log(`text width: ${t.width}`)
     
     ctx.fillText(text, 100, 100)
   })
+
+  function convertToBuffer() {
+    const c = document.getElementById("myCanvas") as HTMLCanvasElement
+    handleMint(c)
+  }
   
   return (
-    <canvas id='myCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
+    <div>
+      <canvas id='myCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
+      <button onClick={convertToBuffer}>Mint</button>
+    </div>
   )
 }
 
