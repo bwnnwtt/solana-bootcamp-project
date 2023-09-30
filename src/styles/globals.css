@@ -127,6 +127,12 @@ input[type="radio"] {
   
 }
 
+.grid-container {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: repeat(auto-fill, 200px)
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

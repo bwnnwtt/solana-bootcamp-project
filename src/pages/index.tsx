@@ -1,4 +1,5 @@
 import Canvas from '@/components/Canvas'
+import PaintingCanvas from '@/components/PaintingCanvas'
 import NavBar from '@/components/NavBar'
 import SNSList from '@/components/SNSList'
 import { useState } from 'react'
@@ -24,7 +25,10 @@ export default function Home() {
       <div>
         <input type='text' value={text} onChange={handleInputTextChange} placeholder='Enter text...'/>
       </div>
-      <Canvas text={text}/>
+      <div className="grid-container">
+        <Canvas text={text}/>
+        <PaintingCanvas text={text} name={text} />
+      </div>
     </div>
   )
 }
