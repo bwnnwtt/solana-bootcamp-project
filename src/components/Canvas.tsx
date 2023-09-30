@@ -20,9 +20,7 @@ const Canvas = ({text}) => {
   })
   
   return (
-    <div>
-      <canvas id='myCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
-    </div>
+    <canvas id='myCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
   )
 }
 
