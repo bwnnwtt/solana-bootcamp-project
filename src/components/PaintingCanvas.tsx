@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 const crypto = require('crypto');
 
-const PaintingCanvas = ({text, name}) => {
+const PaintingCanvas = ({text, name, handleMint}) => {
 
   let hash
 
@@ -85,6 +85,11 @@ const PaintingCanvas = ({text, name}) => {
     return colours[colourIndex];
   }
 
+  function convertToBuffer() {
+    const c = document.getElementById("myPaintingCanvas") as HTMLCanvasElement
+    handleMint(c)
+  }
+
   useEffect(() => {
     const canvas = document.getElementById("myPaintingCanvas") as HTMLCanvasElement
     const ctx = canvas.getContext("2d")
@@ -115,7 +120,10 @@ const PaintingCanvas = ({text, name}) => {
   })
   
   return (
-    <canvas id='myPaintingCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
+    <div>
+      <canvas id='myPaintingCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
+      <button onClick={convertToBuffer}>Mint</button>
+    </div>
   )
 }
 
