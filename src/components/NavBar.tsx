@@ -9,7 +9,7 @@ const WalletMultiButtonDynamic = dynamic(
 
 const NavBar = () => {
   return (
-    <div>
+    <div className='wallet-container'>
       <WalletMultiButtonDynamic />
     </div>
   )

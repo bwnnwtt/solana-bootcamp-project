@@ -2,9 +2,10 @@ import Canvas from '@/components/Canvas'
 import PaintingCanvas from '@/components/PaintingCanvas'
 import NavBar from '@/components/NavBar'
 import SNSList from '@/components/SNSList'
+import { toast } from 'react-toastify'
 import { useState } from 'react'
-import { Metaplex, bundlrStorage, toMetaplexFile, walletAdapterIdentity } from "@metaplex-foundation/js";
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { Metaplex, bundlrStorage, toMetaplexFile, walletAdapterIdentity } from "@metaplex-foundation/js"
+import { useConnection, useWallet } from '@solana/wallet-adapter-react'
 
 
 export default function Home() {
@@ -65,11 +66,27 @@ export default function Home() {
                         name: text,
                         sellerFeeBasisPoints: 0,
                         isMutable: false
-                    });
+                    })
       
+      let txURL = `https://explorer.solana.com/address/${nft.address}?cluster=devnet`
       console.log(`Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`)
+
+      toast.success(
+        <div>Successfully minted NFT!
+          <br/>
+          <a target='_blank' href={txURL} rel='noopener noreferrer'>
+            <u>View Transaction</u>
+          </a>
+        </div>
+      ) 
     } catch (error) {
+      
       console.error('Error: ', error)
+      if(error.name == 'UninitializedWalletAdapterError') {
+        toast.error(`Please connect wallet to mint`)
+      } else {
+        toast.error(`Error! ${error}`)
+      }
     }
   }
 
@@ -77,7 +94,7 @@ export default function Home() {
     <div>
       <NavBar />
       <SNSList handleSNSClick={handleSNSClick} />
-      <div>
+      <div className='input-container'>
         <input type='text' value={text} onChange={handleInputTextChange} placeholder='Enter text...'/>
       </div>
       <div className="grid-container">

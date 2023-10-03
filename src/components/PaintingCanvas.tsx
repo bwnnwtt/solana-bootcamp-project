@@ -122,7 +122,7 @@ const PaintingCanvas = ({text, name, handleMint}) => {
   return (
     <div>
       <canvas id='myPaintingCanvas' width='200px' height='200px' style={{ border: '1px solid'}}></canvas>
-      <button onClick={convertToBuffer}>Mint</button>
+      <button className='button' onClick={convertToBuffer}>Mint</button>
     </div>
   )
 }

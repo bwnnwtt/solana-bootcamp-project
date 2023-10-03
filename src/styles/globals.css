@@ -8,7 +8,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --background-primary: #0f172a;
+  /* --background-primary: #0f172a; */
+  --background-primary: #1f1f1f;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -96,10 +97,6 @@ a {
   text-decoration: none;
 }
 
-div {
-  margin-top: 20px;
-}
-
 input[type="radio"] {
   display: none;
 }
@@ -124,13 +121,61 @@ input[type="radio"] {
 /* Style the radio button when it's checked */
 .radio-container input[type="radio"]:checked + label {
   background-color: #512da8;
-  
 }
 
 .grid-container {
   display: grid;
   grid-gap: 50px;
   grid-template-columns: repeat(auto-fill, 200px)
+}
+
+.grid-container,
+.input-container,
+.radio-container,
+.sns-container,
+.wallet-container {
+  margin-top: 20px;
+}
+
+/* CSS */
+.button {
+  align-items: center;
+  background-color: rgba(85, 45, 168, 0.92);
+  border: 1px solid #DFDFDF;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 8px;
+  max-width: 100%;
+  padding: 14px 22px;
+  text-decoration: none;
+  transition: all .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button:active,
+.button:hover {
+  outline: 0;
+}
+
+.button:hover {
+  background-color: rgba(85, 45, 168, 0.60);
+  border-color: rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 768px) {
+  .button {
+    font-size: 20px;
+    min-width: 200px;
+    padding: 14px 16px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
