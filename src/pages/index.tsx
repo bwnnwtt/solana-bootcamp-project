@@ -92,15 +92,22 @@ export default function Home() {
 
   return (
     <div>
-      <NavBar />
-      <SNSList handleSNSClick={handleSNSClick} />
-      <div className='input-container'>
-        <input type='text' value={text} onChange={handleInputTextChange} placeholder='Enter text...'/>
-      </div>
-      <div className="grid-container">
-        <Canvas text={text} handleMint={handleMint}/>
-        <PaintingCanvas text={text} name={text} handleMint={handleMint} />
-      </div>
+      {wallet.connected ? 
+      <div>
+        <NavBar /> 
+        <SNSList handleSNSClick={handleSNSClick} />
+        <div className='input-container'>
+          <input type='text' value={text} onChange={handleInputTextChange} placeholder='Enter text...'/>
+        </div>
+        <div className="grid-container">
+          <Canvas text={text} handleMint={handleMint}/>
+          <PaintingCanvas text={text} name={text} handleMint={handleMint} />
+        </div>
+      </div> :
+      <NavBar />  
+      }
+      
+      
     </div>
   )
 }
