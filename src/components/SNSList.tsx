@@ -12,8 +12,7 @@ const list = [
 const SNSList = ({handleSNSClick}) => {
 
   return (
-    <div>
-
+    <div className='sns-container'>
       {list.map((sns, i) => (
         <div className='radio-container' key={i}>
           <input type='radio' id={sns} value={sns} name='sns-list' onClick={handleSNSClick}/>
@@ -22,7 +21,6 @@ const SNSList = ({handleSNSClick}) => {
           </label>
         </div>
       ))}
-  
     </div>
   )
 }
