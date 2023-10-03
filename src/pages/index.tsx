@@ -6,13 +6,15 @@ import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { Metaplex, bundlrStorage, toMetaplexFile, walletAdapterIdentity } from "@metaplex-foundation/js"
 import { useConnection, useWallet } from '@solana/wallet-adapter-react'
+import { Button, Flex, Text, Image, Box } from '@chakra-ui/react';
 
 
 export default function Home() {
 
   const [text, setText] = useState('')
   const { connection } = useConnection()
-  const wallet = useWallet()
+  // const wallet = useWallet()
+  const { connected, wallet, publicKey } = useWallet();
 
   function handleInputTextChange(e) {
     setText(e.target.value)
@@ -36,7 +38,7 @@ export default function Home() {
   async function createNft(buffer) {
     try {
       const metaplex = Metaplex.make(connection)
-                            .use(walletAdapterIdentity(wallet))
+                            .use(walletAdapterIdentity(useWallet()))
                             .use(
                               bundlrStorage({
                                 address: "https://devnet.bundlr.network",
@@ -92,15 +94,22 @@ export default function Home() {
 
   return (
     <div>
-      <NavBar />
-      <SNSList handleSNSClick={handleSNSClick} />
-      <div className='input-container'>
-        <input type='text' value={text} onChange={handleInputTextChange} placeholder='Enter text...'/>
-      </div>
-      <div className="grid-container">
-        <Canvas text={text} handleMint={handleMint}/>
-        <PaintingCanvas text={text} name={text} handleMint={handleMint} />
-      </div>
+      {connected ? 
+      <div>
+        <NavBar /> 
+        <SNSList handleSNSClick={handleSNSClick} />
+        <div className='input-container'>
+          <input type='text' value={text} onChange={handleInputTextChange} placeholder='Enter text...'/>
+        </div>
+        <div className="grid-container">
+          <Canvas text={text} handleMint={handleMint}/>
+          <PaintingCanvas text={text} name={text} handleMint={handleMint} />
+        </div>
+      </div> :
+      <NavBar />  
+      }
+      
+      
     </div>
   )
 }
